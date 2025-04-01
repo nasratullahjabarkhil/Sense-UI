@@ -1,6 +1,6 @@
-
 from PIL import Image, ImageTk
 
+from IAConversationWindow import IAConversationWindow
 from UI.windows import *
 from Texts import *
 from Images import *
@@ -53,6 +53,7 @@ class App:
         )
         self.imageButton.image = self.imagen_tk  # Referencia adicional
         self.imageButton.place(relx=1.0, rely=0, anchor="ne")
+
     def setup_menu(self):
         # Menú minimalista solo con About
         menu_bar = tk.Menu(self.root)
@@ -61,6 +62,14 @@ class App:
         home_menu.add_command(label=home, command=root)
         menu_bar.add_cascade(label=home, menu=home_menu)
         """
+
+        ia_menu = tk.Menu(menu_bar, tearoff=0)
+        ia_menu.add_command(
+            label=asistenteVirtualChat,
+            command=lambda: IAConversationWindow(self.root)
+        )
+        menu_bar.add_cascade(label="Asistente", menu=ia_menu)
+
         about_menu = tk.Menu(menu_bar, tearoff=0)
         about_menu.add_command(label=about, command=lambda: about_window(self.root))
         menu_bar.add_cascade(label=about, menu=about_menu)

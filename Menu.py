@@ -1,6 +1,4 @@
-import tkinter as tk
-from Texts import *
-from windows import *
+from UI.windows import *
 
 
 def create_menu(root):
