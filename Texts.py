@@ -22,6 +22,19 @@ whyChooseSenseText = ("ENSE OS stands out because it focuses on simplicity, func
            " Whether you are visually impaired, elderly, or have limited dexterity, "
             "SENSE OS is designed to empower you to engage with technology confidently.")
 
+# Textos de configuración
+mainWindowTitle = "Mi Aplicación"
+senseTitle = "Bienvenido al Asistente Virtual"
+lightblue = "#ADD8E6"
+teal = "#008080"
+red = "#FF0000"
+imageLoadingError = "Error cargando la imagen"
+logo = "logo.png"  # Asegúrate de que la ruta de la imagen esté correcta
+about = "Acerca de"
+help = "Ayuda"
+contct = "Contacto"
+future = "Futuro"
+asistenteVirtualChat = "Iniciar Chat"
 
 
 #Menu item
@@ -30,6 +43,7 @@ about = "About"
 help = "Help"
 contct = "Contact"
 future = "Future"
+asistenteVirtualChat = "Asistente Virtual Chat"
 
 
 # Colores básicos (estándar Tkinter)
@@ -49,6 +63,7 @@ cyan = "cyan"
 magenta = "magenta"
 gold = "gold"
 silver = "silver"
+teal = "teal"
 
 # Colores modernos (hexadecimal)
 darkblue = "#1a237e"
