@@ -1,1 +1,1 @@
-logo = "/Users/nasratullahjabarkhil/Downloads/logo.jpeg"
+logo = "/Users/nasratullahjabarkhil/PycharmProjects/Desktop UI/UI/logo.jpeg"
