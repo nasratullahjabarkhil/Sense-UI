@@ -275,7 +275,7 @@ class IAConversationWindow:
         self.high_contrast = not self.high_contrast
         if self.high_contrast:
             self.conversation_text.config(bg="black", fg="white")
-            self.contrast_button.config(bg="black", fg="white")
+            self.contrast_button.config(bg="black", fg=blue)
 
         else:
             self.conversation_text.config(bg="white", fg="black")

@@ -14,6 +14,7 @@ class App:
         self.create_widgets()
         self.setup_menu()
         self.root.mainloop()
+        self.root.create_button()
 
     def setup_main_window(self):
         self.root.title(mainWindowTitle)
@@ -53,6 +54,21 @@ class App:
         )
         self.imageButton.image = self.imagen_tk  # Referencia adicional
         self.imageButton.place(relx=1.0, rely=0, anchor="ne")
+
+        # Botón del asistente virtual
+        self.assistant_button = tk.Button(
+            self.root,
+            text="Asistente Virtual",
+            font=("Arial", 14),
+            bg=grey,
+            fg=black,
+            padx=20,
+            borderwidth=0,
+            pady=10,
+            command=lambda: IAConversationWindow(self.root)
+        )
+        self.assistant_button.pack(pady=20)
+
 
     def setup_menu(self):
         # Menú minimalista solo con About

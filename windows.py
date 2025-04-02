@@ -1,6 +1,5 @@
 import tkinter as tk
 from Texts import *
-
 def create_window(root, titulo="", ancho=400, alto=300, bg="lightblue"):
     """Crea una ventana centrada con parámetros personalizables"""
     ventana = tk.Toplevel(root)  # Usar Toplevel para ventanas secundarias
