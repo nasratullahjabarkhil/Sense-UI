@@ -7,15 +7,24 @@ from ai_assistant import *
 
 
 class IAConversationWindow:
-    def __init__(self, parent, model_name: str = "mistral"):
-        self.window = tk.Toplevel(parent)
-        self.window.title(f"Asistente Virtual ({model_name.capitalize()})")
+    def __init__(self, parent, model_name: str = "mistral", embed: bool = False, parent_frame=None):
+        if embed:
+            # Modo embebido en la ventana principal
+            self.window = parent_frame
+            self.is_embedded = True
+        else:
+            # Modo ventana independiente
+            self.window = tk.Toplevel(parent)
+            self.is_embedded = False
+
+        self.model = model_name
 
         try:
             self.assistant = AIAssistant(model_name)
         except ValueError as e:
             messagebox.showerror("Error", str(e))
-            self.window.destroy()
+            if not self.is_embedded:
+                self.window.destroy()
             return
 
         # Configuración inicial
@@ -28,17 +37,19 @@ class IAConversationWindow:
 
     def setup_window(self):
         """Configura la ventana principal"""
-        self.window.geometry("1000x700")
-        self.window.configure(bg=lightblue)
+        if not self.is_embedded:
+            self.window.title(f"Asistente Virtual ({self.model.capitalize()})")
+            self.window.geometry("1000x700")
+            self.window.configure(bg=lightblue)
 
-        # Centrar ventana
-        window_width = 1000
-        window_height = 700
-        screen_width = self.window.winfo_screenwidth()
-        screen_height = self.window.winfo_screenheight()
-        x = (screen_width // 2) - (window_width // 2)
-        y = (screen_height // 2) - (window_height // 2)
-        self.window.geometry(f"{window_width}x{window_height}+{x}+{y}")
+            # Centrar ventana solo si no está embebida
+            window_width = 1000
+            window_height = 700
+            screen_width = self.window.winfo_screenwidth()
+            screen_height = self.window.winfo_screenheight()
+            x = (screen_width // 2) - (window_width // 2)
+            y = (screen_height // 2) - (window_height // 2)
+            self.window.geometry(f"{window_width}x{window_height}+{x}+{y}")
 
         # Fuentes accesibles
         self.large_font = ("Arial", 16)
@@ -115,7 +126,7 @@ class IAConversationWindow:
             "asistente",  # Tag para el asistente
             foreground="#3498DB",  # Azul claro
             font=("Arial", 18, "bold"),
-            lmargin1=20,  # Margen izquierdo
+            lmargin1=0,  # Margen izquierdo
             spacing2=5  # Espacio entre párrafos
         )
 
@@ -169,10 +180,7 @@ class IAConversationWindow:
 
     def setup_conversation(self):
         """Inicia la conversación con mensaje de bienvenida"""
-        welcome_message = (
-            "¡Hola! Soy tu asistente virtual. "
-            "Puedes preguntarme lo que necesites.\n\n"
-        )
+        welcome_message = "¡Hola! Soy tu asistente virtual. Puedes preguntarme lo que necesites.\n"
         self.display_message("Asistente", welcome_message)
 
     def send_message(self):

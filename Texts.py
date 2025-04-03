@@ -23,13 +23,13 @@ whyChooseSenseText = ("ENSE OS stands out because it focuses on simplicity, func
             "SENSE OS is designed to empower you to engage with technology confidently.")
 
 # Textos de configuración
-mainWindowTitle = "Mi Aplicación"
+mainWindowTitle = "Sense OS"
 senseTitle = "Bienvenido al Asistente Virtual"
 lightblue = "#ADD8E6"
 teal = "#008080"
 red = "#FF0000"
 imageLoadingError = "Error cargando la imagen"
-logo = "logo.png"  # Asegúrate de que la ruta de la imagen esté correcta
+logo = "logo.png"
 about = "Acerca de"
 help = "Ayuda"
 contct = "Contacto"
