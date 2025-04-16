@@ -21,9 +21,9 @@ class App:
 
     def setup_main_window(self):
         self.root.title(mainWindowTitle)
-        self.root.geometry("1500x1000")
         self.root.resizable(True, True)
         self.root.configure(bg=lightblue)
+        self.root.state('zoomed')
 
     def load_images(self):
         try:

@@ -24,7 +24,7 @@ whyChooseSenseText = ("ENSE OS stands out because it focuses on simplicity, func
 
 # Textos de configuración
 mainWindowTitle = "Sense OS"
-senseTitle = "Bienvenido al Asistente Virtual"
+senseTitle = "Bienvenido a Sense SO"
 lightblue = "#ADD8E6"
 teal = "#008080"
 red = "#FF0000"
