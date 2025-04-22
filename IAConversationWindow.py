@@ -22,7 +22,7 @@ class IAConversationWindow:
         try:
             self.assistant = AIAssistant(model_name)
         except ValueError as e:
-            messagebox.showerror("Error", str(e))
+            messagebox.showerror(error, str(e))
             if not self.is_embedded:
                 self.window.destroy()
             return
@@ -38,7 +38,7 @@ class IAConversationWindow:
     def setup_window(self):
         """Configura la ventana principal"""
         if not self.is_embedded:
-            self.window.title(f"Asistente Virtual ({self.model.capitalize()})")
+            self.window.title(f"{virtualAssistant} ({self.model.capitalize()})")
             self.window.geometry("1000x700")
             self.window.configure(bg=lightblue)
 
@@ -67,8 +67,8 @@ class IAConversationWindow:
             main_frame,
             wrap="word",
             font=self.extra_large_font,
-            bg="white",
-            fg="black",
+            bg=white,
+            fg=black,
             padx=15,
             pady=15,
             state="normal",
@@ -77,10 +77,10 @@ class IAConversationWindow:
         self.conversation_text.pack(fill="both", expand=True)
 
         # Configurar tags de estilo
-        self.conversation_text.tag_config("thinking", foreground="gray", font=("Arial", 18, "italic"))
-        self.conversation_text.tag_config("assistant", foreground="blue", font=("Arial", 20))
-        self.conversation_text.tag_config("user", foreground="darkgreen", font=("Arial", 20))
-        self.conversation_text.tag_config("error", foreground="red", font=("Arial", 18, "bold"))
+        self.conversation_text.tag_config("thinking", foreground=grey, font=("Arial", 18, "italic"))
+        self.conversation_text.tag_config("assistant", foreground=blue, font=("Arial", 20))
+        self.conversation_text.tag_config("user", foreground=darkGreen, font=("Arial", 20))
+        self.conversation_text.tag_config("error", foreground=red, font=("Arial", 18, "bold"))
 
         # Scrollbar
         scrollbar = tk.Scrollbar(self.conversation_text)
@@ -104,7 +104,7 @@ class IAConversationWindow:
         # Botón de enviar
         self.send_button = tk.Button(
             input_frame,
-            text="Enviar",
+            text=send,
             font=self.large_font,
             command=self.send_message,
             bg=teal,
@@ -123,8 +123,8 @@ class IAConversationWindow:
 
         # Configurar tags de estilo para el Asistente (azul)
         self.conversation_text.tag_config(
-            "asistente",  # Tag para el asistente
-            foreground="#3498DB",  # Azul claro
+            assistant,  # Tag para el asistente
+            foreground=lightblue,
             font=("Arial", 18, "bold"),
             lmargin1=0,  # Margen izquierdo
             spacing2=5  # Espacio entre párrafos
@@ -133,7 +133,7 @@ class IAConversationWindow:
         # Configurar tags de estilo para el Usuario (verde)
         self.conversation_text.tag_config(
             "tú",  # Tag para el usuario
-            foreground="#2ECC71",  # Verde claro
+            foreground=lightGreen,
             font=("Arial", 18),
             rmargin=20,  # Margen derecho
             spacing2=5
@@ -155,7 +155,7 @@ class IAConversationWindow:
             text="A+",
             font=("Arial", 14, "bold"),
             command=self.increase_font_size,
-            bg="white",
+            bg=white,
             width=3
         ).pack(side="left", padx=(0, 5))
 
@@ -164,24 +164,24 @@ class IAConversationWindow:
             text="A-",
             font=("Arial", 14, "bold"),
             command=self.decrease_font_size,
-            bg="white",
+            bg=white,
             width=3
         ).pack(side="left")
 
         # Control de contraste
         self.contrast_button = tk.Button(
             control_frame,
-            text="Alto Contraste",
+            text=highContrast,
             font=("Arial", 12),
             command=self.toggle_contrast,
-            bg="white"
+            bg=white
         )
         self.contrast_button.pack(side="right")
 
     def setup_conversation(self):
         """Inicia la conversación con mensaje de bienvenida"""
-        welcome_message = "¡Hola! Soy tu asistente virtual. Puedes preguntarme lo que necesites.\n"
-        self.display_message("Asistente", welcome_message)
+        welcome_message = welcomeMessage
+        self.display_message(assistant, welcome_message)
 
     def send_message(self):
         """Procesa el mensaje del usuario"""

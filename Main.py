@@ -28,7 +28,7 @@ class App:
     def load_images(self):
         try:
             imagen = Image.open(logo)
-            imagen = imagen.resize((150, 150), Image.LANCZOS)
+            imagen = imagen.resize((150, 150))
             self.imagen_tk = ImageTk.PhotoImage(imagen)
         except Exception as e:
             print(f"{imageLoadingError}: {str(e)}")
@@ -68,7 +68,7 @@ class App:
             image=self.imagen_tk,
             command=lambda: about_window(self.root),
             borderwidth=0,
-            bg="lightblue",
+            bg=lightblue,
             relief="flat"
         )
         self.imageButton.image = self.imagen_tk
@@ -94,13 +94,13 @@ class App:
                 parent_frame=chatbot_frame
             )
         except Exception as e:
-            messagebox.showerror("Error", f"No se pudo cargar el asistente: {str(e)}")
+            messagebox.showerror(error, f"{asistantErrorMessage} {str(e)}")
             chatbot_frame.destroy()
 
         # Botón para abrir terminal
         terminal_btn = tk.Button(
             controls_frame,
-            text="Abrir Terminal",
+            text=openTerminal,
             font=("Arial", 12),
             bg=grey,
             fg=black,
@@ -118,7 +118,7 @@ class App:
         # Botón para abrir terminal
         music_btn = tk.Button(
             controls_frame,
-            text="Musica",
+            text=music,
             font=("Arial", 12),
             bg=grey,
             fg=black,
@@ -133,7 +133,7 @@ class App:
         # Botón para abrir terminal
         calculator_btn = tk.Button(
             controls_frame,
-            text="Calculadora",
+            text=calculator,
             font=("Arial", 12),
             bg=grey,
             fg=black,
@@ -149,13 +149,13 @@ class App:
         try:
             webbrowser.open_new("https://www.youtube.com/watch?v=z4j2WZq9hsA&list=PLJGEY7ccQ7V0InCyUYCUT5sIENWx34cA5")  # O cualquier otra URL de servicio musical
         except Exception as e:
-            messagebox.showerror("Error", f"No se pudo abrir el reproductor de música: {str(e)}")
+            messagebox.showerror(error, f"{reproducirErrorMessage} {str(e)}")
 
     def open_calculator(self):
         try:
             subprocess.run(["open", "-a", "Calculator"])
         except Exception as e:
-            messagebox.showerror("Error", f"No se pudo abrir la Calculadora: {str(e)}")
+            messagebox.showerror(error, f"{calculatorErrorMessage} {str(e)}")
 
     def execute_sense_shell(self):
         try:
@@ -163,7 +163,7 @@ class App:
             script_path = os.path.join(current_dir, "script.sh")
 
             if not os.path.exists(script_path):
-                messagebox.showerror("Error", "script.sh no encontrado")
+                messagebox.showerror(error, scriptNotFoundMessage)
                 return
             if not os.access(script_path, os.X_OK):
                 os.chmod(script_path, 0o755)
@@ -180,7 +180,7 @@ class App:
 
         except Exception as e:
             error_msg = f"""
-            Error al ejecutar script.sh:
+            {scriptErrorMessage}
             {str(e)}
 
             Solución manual:
@@ -190,7 +190,7 @@ class App:
                chmod +x script.sh
                ./script.sh
             """
-            messagebox.showerror("Error", error_msg)
+            messagebox.showerror(error, error_msg)
 
     def create_news_dropdown(self, parent):
         # Frame contenedor
@@ -200,7 +200,7 @@ class App:
         # Botón principal
         self.news_dropdown_btn = tk.Button(
             dropdown_frame,
-            text="Noticias ▼",
+            text=news,
             font=("Arial", 12),
             bg="#4a7a8c",
             fg=black,
@@ -215,7 +215,7 @@ class App:
         # Menú desplegable (inicialmente oculto)
         self.news_dropdown_menu = tk.Frame(
             dropdown_frame,
-            bg="white",
+            bg=white,
             bd=1,
             relief="solid"
         )
@@ -226,7 +226,7 @@ class App:
             ("BBC Mundo", "https://www.bbc.com/mundo"),
             ("CNN Español", "https://cnnespanol.cnn.com"),
             ("Reuters", "https://www.reuters.com"),
-            ("Google", "https://www.google.com")  # Reemplaza con tu fuente local
+            ("Google", "https://www.google.com")
         ]
 
         for name, url in news_sources:
@@ -250,10 +250,10 @@ class App:
     def toggle_news_dropdown(self):
         if self.news_dropdown_shown:
             self.news_dropdown_menu.pack_forget()
-            self.news_dropdown_btn.config(text="Noticias ▼")
+            self.news_dropdown_btn.config(text=news)
         else:
             self.news_dropdown_menu.pack(fill="x", pady=(5, 0))
-            self.news_dropdown_btn.config(text="Noticias ▲")
+            self.news_dropdown_btn.config(text=news)
         self.news_dropdown_shown = not self.news_dropdown_shown
 
     def open_news_url(self, url):
@@ -261,7 +261,7 @@ class App:
             import webbrowser
             webbrowser.open_new_tab(url)
         except Exception as e:
-            messagebox.showerror("Error", f"No se pudo abrir el navegador:\n{str(e)}")
+            messagebox.showerror(error, f"{browserErrorMessage}\n{str(e)}")
 
     def setup_menu(self):
         # Menú minimalista solo con About
@@ -280,8 +280,8 @@ class App:
         menu_bar.add_cascade(label=help, menu=help_menu)
 
         contact_menu = tk.Menu(menu_bar, tearoff=0)
-        contact_menu.add_command(label=contct, command=lambda: contact_window(self.root))
-        menu_bar.add_cascade(label=contct, menu=contact_menu)
+        contact_menu.add_command(label=contact, command=lambda: contact_window(self.root))
+        menu_bar.add_cascade(label=contact, menu=contact_menu)
 
         future_menu = tk.Menu(menu_bar, tearoff=0)
         future_menu.add_command(label=future, command=lambda: future_window(self.root))
